@@ -10,8 +10,8 @@ return(
     <Route path="/" element={<Navigation />} >
          <Route index  element={<Home />} />
          <Route path="/shop" element={<h3>I am in shop</h3>} />
-    </Route>
     <Route path="/sign-in" element={<SignIn  />} />
+    </Route>
   </Routes>
 ) 
 };

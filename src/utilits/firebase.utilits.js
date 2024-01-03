@@ -20,7 +20,7 @@ const analytics = getAnalytics(app);
 const db = getFirestore(app);
 
 
-const auth = getAuth();
+export const auth = getAuth();
 const GoogleUserAuthProvider = new GoogleAuthProvider();
 
 GoogleUserAuthProvider.setCustomParameters({
@@ -33,7 +33,7 @@ export const createUserWithAuthProvider =async()=>{
 }
 
 
-export const createUserWithGoogleData = async(userAuth)=>{
+export const createUserWithGoogleData = async(userAuth,additionalInfo)=>{
   const userCredentials = doc( db, 'user', userAuth?.uid)
   const userSnapshot = await getDoc(userCredentials)
 
@@ -48,7 +48,8 @@ export const createUserWithGoogleData = async(userAuth)=>{
        await setDoc(userCredentials,{
             displayName: userAuth.displayName,
             email:userAuth.email,
-            createdAt
+            createdAt,
+            ...additionalInfo
          })
 
 
@@ -58,4 +59,10 @@ export const createUserWithGoogleData = async(userAuth)=>{
   }else{
     return userCredentials
   }
+}
+
+
+export const authSignIn =async ({email,password})=>{
+    if(! email | !password) return
+ return  await  signInWithEmailAndPassword(auth,email,password)
 }
