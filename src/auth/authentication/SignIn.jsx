@@ -1,13 +1,12 @@
-import React, { useState ,useContext} from 'react'
+import React, { useState,useContext } from 'react'
 
 import { authSignIn, createUserWithAuthProvider ,createUserWithGoogleData} from '../../utilits/firebase.utilits'
 import SignUp from './SignUp/SignUp'
 
 
 import './SiginIn.styles.scss'
+
 import { userContext } from '../../context/user.context'
-
-
 
 const defaultValueSigIn = {
   email:'',
@@ -16,11 +15,10 @@ const defaultValueSigIn = {
 
 
 const SignIn = () => {
-  const { setCurrentUser } = useContext(userContext)
   const [signInValue, setsignInValue]= useState(defaultValueSigIn);
   const {email, password} = signInValue;
    
-
+  const {currentUser} = useContext(userContext)
 
 
   const onHandleChange =(event)=>{
@@ -32,9 +30,14 @@ const SignIn = () => {
 
 
 const logInWithGoogle = async()=>{
+  if(!currentUser){
+
     const {user} = await createUserWithAuthProvider()
     await  createUserWithGoogleData(user) 
-    setCurrentUser(user)
+  }else{
+    alert('user already logged In..')
+  }
+
 }
 
 const handleSignInSubmit = async(event)=>{
@@ -42,7 +45,7 @@ const handleSignInSubmit = async(event)=>{
   try{
     
     const {user}=await authSignIn(signInValue);
-    setCurrentUser(user)
+   
   }catch(e){
     switch(e.code){
       case 'auth/invalid-credential':

@@ -1,5 +1,5 @@
 
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getFirestore, doc, setDoc , getDoc } from "firebase/firestore";
@@ -65,4 +65,10 @@ export const createUserWithGoogleData = async(userAuth,additionalInfo)=>{
 export const authSignIn =async ({email,password})=>{
     if(! email | !password) return
  return  await  signInWithEmailAndPassword(auth,email,password)
+}
+
+export const signOutUser = ()=> signOut(auth)
+
+export const onAuthStateChangedUser = (clback)=>{
+  return onAuthStateChanged(auth,clback)
 }
