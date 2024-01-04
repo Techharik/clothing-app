@@ -38,7 +38,7 @@ export const createUserWithGoogleData = async(userAuth,additionalInfo)=>{
   const userSnapshot = await getDoc(userCredentials)
 
 
-  console.log(userSnapshot.exists())
+  // console.log(userSnapshot.exists())
 
   if(! userSnapshot.exists()){
     const createdAt = new Date();

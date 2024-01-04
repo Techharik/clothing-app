@@ -2,8 +2,13 @@ import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { Link } from 'react-router-dom';
 import './navigation.styles.scss';
+import { useContext } from 'react';
+import { userContext } from '../../context/user.context';
 
 const Navigation = () => {
+ const {currentUser} = useContext(userContext);
+
+
   return (
     <>
       <div className='navigation'>
@@ -15,7 +20,7 @@ const Navigation = () => {
             SHOP
           </Link>
           <Link className='nav-link' to='/sign-in'>
-            SIGN IN
+            {currentUser?'Sign Out':"Sign In"}
           </Link>
         </div>
       </div>

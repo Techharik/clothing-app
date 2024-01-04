@@ -1,7 +1,9 @@
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import { createUserWithGoogleData } from '../../../utilits/firebase.utilits'
 import { auth } from '../../../utilits/firebase.utilits'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
+
+import { userContext } from '../../../context/user.context'
 
 import './SignUp.styles.scss'
 
@@ -16,6 +18,8 @@ const SignUp = () => {
   const [formfield, setFormfield] =useState(defaultUserData)
   const {displayName,email,password,confirmPassword}= formfield;
 
+  const {setCurrentUser}=useContext(userContext)
+
   const resetValue =()=> {
     setFormfield(defaultUserData)
   }
@@ -26,6 +30,7 @@ const SignUp = () => {
     if(password !== confirmPassword)return alert('password mismatch')
     const {user} = await createUserWithEmailAndPassword(auth, email,password)
    await createUserWithGoogleData(user,{displayName})
+   setCurrentUser(user)
 resetValue()
   }
 
