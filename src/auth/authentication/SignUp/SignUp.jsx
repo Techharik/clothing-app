@@ -29,7 +29,7 @@ const SignUp = () => {
     const {user} = await createUserWithEmailAndPassword(auth, email,password)
     await createUserWithGoogleData(user,{displayName})
   
-resetValue()
+    resetValue()
   }
 
   const handleChange=(event)=>{
