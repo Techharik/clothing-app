@@ -8,6 +8,7 @@ import './SiginIn.styles.scss'
 
 import { userContext } from '../../context/user.context'
 
+
 const defaultValueSigIn = {
   email:'',
   password:''
@@ -44,7 +45,7 @@ const handleSignInSubmit = async(event)=>{
   event.preventDefault();
   try{
     
-    const {user}=await authSignIn(signInValue);
+  const {user}=await authSignIn(signInValue);
    
   }catch(e){
     switch(e.code){
@@ -83,6 +84,7 @@ const handleSignInSubmit = async(event)=>{
      </div>
        
         <SignUp />
+        
     </div>
  
   )

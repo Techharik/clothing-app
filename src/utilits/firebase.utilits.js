@@ -1,9 +1,20 @@
 
-import { getAuth, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth";
+// Import auth and auth provider from firebase documentation.
+import { 
+   getAuth,
+   signInWithPopup,
+   GoogleAuthProvider,
+   signInWithEmailAndPassword,
+   signOut,
+   onAuthStateChanged
+   } from "firebase/auth";
+
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+
+// Firestore Database  
 import { getFirestore, doc, setDoc , getDoc } from "firebase/firestore";
 
+// Special Configurations Given to the App
 const firebaseConfig = {
   apiKey: "AIzaSyAlKPn46Mihq3pudoD08h79hDvUWk1s14o",
   authDomain: "clothing-90cb8.firebaseapp.com",
@@ -16,25 +27,28 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+//Initialize the firestore
 const db = getFirestore(app);
 
 
 export const auth = getAuth();
 const GoogleUserAuthProvider = new GoogleAuthProvider();
 
+//Optional Paramters
 GoogleUserAuthProvider.setCustomParameters({
     prompt: 'select_account'
 });
 
-
-export const createUserWithAuthProvider =async()=>{
+//A functional return the signInWithPopup
+export const createUserWithAuthProvider = async () =>{
  return signInWithPopup(auth,GoogleUserAuthProvider)
 }
 
 
 export const createUserWithGoogleData = async(userAuth,additionalInfo)=>{
+  //creating a document in the container using doc method.
   const userCredentials = doc( db, 'user', userAuth?.uid)
+  //getdoc is  used to find the value in document
   const userSnapshot = await getDoc(userCredentials)
 
 
@@ -45,6 +59,7 @@ export const createUserWithGoogleData = async(userAuth,additionalInfo)=>{
      
 
     try{
+      // setting the value inside the user document
        await setDoc(userCredentials,{
             displayName: userAuth.displayName,
             email:userAuth.email,
@@ -61,14 +76,16 @@ export const createUserWithGoogleData = async(userAuth,additionalInfo)=>{
   }
 }
 
-
+//using signIn with email and password
 export const authSignIn =async ({email,password})=>{
     if(! email | !password) return
  return  await  signInWithEmailAndPassword(auth,email,password)
 }
 
+//signOut from the current sessions.
 export const signOutUser = ()=> signOut(auth)
 
+//Maintaining
 export const onAuthStateChangedUser = (clback)=>{
   return onAuthStateChanged(auth,clback)
 }

@@ -13,12 +13,13 @@ export const UserProvider = ({children})=>{
       
       useEffect(()=>{
         const unsubscribe = onAuthStateChangedUser((u)=>{
-                console.log(u)
-                setCurrentUser(u)
+              setCurrentUser(u)
         }) 
 
         return unsubscribe
       },[])
 
-    return   <userContext.Provider value={value}> {children} </userContext.Provider>
+    return   <userContext.Provider value={value}> 
+             {children} 
+            </userContext.Provider>
 }
