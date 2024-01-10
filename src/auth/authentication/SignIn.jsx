@@ -7,6 +7,7 @@ import SignUp from './SignUp/SignUp'
 import './SiginIn.styles.scss'
 
 import { userContext } from '../../context/user.context'
+import Button from '../../components/button/button.component'
 
 
 const defaultValueSigIn = {
@@ -77,8 +78,9 @@ const handleSignInSubmit = async(event)=>{
 
          <div className='buttons-container'>
 
-        <button type='submit' >Signin</button>
-        <button type='button' onClick={logInWithGoogle}>Signin with google</button>
+        <Button type='submit' buttonType='inverted' >Signin</Button>
+        <br />
+        <Button type='button' buttonType='google-sign-in' onClick={logInWithGoogle}>Signin with google</Button>
          </div>
         </form>
      </div>

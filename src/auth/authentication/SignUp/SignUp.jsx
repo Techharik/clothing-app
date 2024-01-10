@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 
 import './SignUp.styles.scss'
+import Button from '../../../components/button/button.component'
 
 const defaultUserData = {
     displayName:'',
@@ -84,7 +85,7 @@ const SignUp = () => {
          onChange={handleChange}
 
          />
-        <button type='submit' >SignUp</button>
+        <Button type='submit' buttonType='google-sign-in'  >SignUp</Button>
         </div>
 
     </form>
