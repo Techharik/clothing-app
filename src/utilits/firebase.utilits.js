@@ -12,7 +12,7 @@ import {
 import { initializeApp } from "firebase/app";
 
 // Firestore Database  
-import { getFirestore, doc, setDoc , getDoc } from "firebase/firestore";
+import { getFirestore, doc, setDoc , getDoc, collection, writeBatch, query, getDocs } from "firebase/firestore";
 
 // Special Configurations Given to the App
 const firebaseConfig = {
@@ -88,4 +88,40 @@ export const signOutUser = ()=> signOut(auth)
 //Maintaining
 export const onAuthStateChangedUser = (clback)=>{
   return onAuthStateChanged(auth,clback)
+}
+
+
+
+//collection and batch writing
+
+export const addCollectionDoc = async(collectionkey,objectToAdd)=>{
+  const collectionRef = collection(db,collectionkey)
+
+  const batch = writeBatch(db)
+  
+  objectToAdd.forEach((object)=>{
+      const docRef = doc(collectionRef,object.title.toLowerCase())
+
+      batch.set(docRef,object)
+  })
+
+  await batch.commit()
+  console.log("done")
+ 
+}
+
+
+//getting data form the firestore databse:
+
+export const getCategoriesData =async (name)=>{
+  const collectionRef = collection(db, 'categories')
+  const querySnapshot = await getDocs(collectionRef)
+
+ const categoryMap =  querySnapshot.docs.reduce((acc, value)=>{
+          const {title , items} = value.data()
+          acc[title.toLowerCase()] =items;
+          return acc;
+  },{})
+
+  return categoryMap
 }
