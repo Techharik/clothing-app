@@ -10,17 +10,23 @@ import { ProductCardProvider } from './context/product.context';
 import { CartContextProvider } from './context/cart.context';
 
 
+
+import { Provider } from 'react-redux';
+import { store } from './store/store';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     <BrowserRouter> 
-    <UserProvider>
-      <ProductCardProvider>
+    {/* <UserProvider> */}
+    <Provider store= {store}>
+      {/* <ProductCardProvider> */}
         <CartContextProvider >
           <App />
         </CartContextProvider>
-      </ProductCardProvider>
-    </UserProvider>
+      {/* </ProductCardProvider> */}
+      </Provider>
+    {/* </UserProvider> */}
     </BrowserRouter>
   // </React.StrictMode>
 );
