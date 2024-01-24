@@ -13,6 +13,8 @@ const Category = () => {
   const productItem = useSelector((s)=>s.product.productItem)
   const [products, setProducts] = useState(productItem[category]);
   console.log(category)
+
+  
   useEffect(() => {
     setProducts(productItem[category]);
   }, [category, productItem]);

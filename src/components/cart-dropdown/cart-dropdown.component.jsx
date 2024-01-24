@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 
 const CartDropdown = () => {
 const {cartItem}  = useContext(CartContext)
+
 console.log(cartItem)
 
   return (

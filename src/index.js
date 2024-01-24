@@ -21,9 +21,9 @@ root.render(
     {/* <UserProvider> */}
     <Provider store= {store}>
       {/* <ProductCardProvider> */}
-        <CartContextProvider >
+        {/* <CartContextProvider > */}
           <App />
-        </CartContextProvider>
+        {/* </CartContextProvider> */}
       {/* </ProductCardProvider> */}
       </Provider>
     {/* </UserProvider> */}
