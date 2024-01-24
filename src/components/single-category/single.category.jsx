@@ -6,10 +6,11 @@ import ProductCard from '../Productcard/productcard';
 import { ProductContext } from '../../context/product.context';
 
 import { CategoryContainer, Title } from './category.styles';
+import { useSelector } from 'react-redux';
 
 const Category = () => {
   const { category } = useParams();
-  const { productItem } = useContext(ProductContext);
+  const productItem = useSelector((s)=>s.product.productItem)
   const [products, setProducts] = useState(productItem[category]);
   console.log(category)
   useEffect(() => {

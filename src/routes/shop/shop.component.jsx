@@ -10,7 +10,9 @@ import { PRODUCT_ACTIONTYPES } from '../../store/product/product.action.js';
 const Shop = () => {
   // const { productItem } = useContext(ProductContext);
   const productItem = useSelector((state)=>state.product.productItem)
+  
   console.log(productItem)
+
   const dispatch = useDispatch()
   useEffect(()=>{
     const categoryMap = async ()=>{
