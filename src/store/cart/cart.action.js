@@ -34,7 +34,7 @@ function addCartItem (cartItem,AddProduct){
     return [...cartItem,{...AddItem}]
 }
 
-function decItem(cartItem,AddProduct){
+export function decItem(cartItem,AddProduct){
     // If the prduct is already exists
     const exitingItem = cartItem.find((item)=>{
        return item.id === AddProduct.id

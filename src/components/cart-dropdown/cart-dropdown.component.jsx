@@ -5,16 +5,18 @@ import CartItem from '../CartItem/CartItem.component';
 import './cart-dropdown.styles.scss';
 import { CartContext } from '../../context/cart.context';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { selectCartReducers } from '../../store/cart/cart.action.types';
 
 const CartDropdown = () => {
-const {cartItem}  = useContext(CartContext)
-
+// const {cartItem}  = useContext(CartContext)
+const cartItem = useSelector(selectCartReducers)
 console.log(cartItem)
 
   return (
     <div className='cart-dropdown-container'>
     <div className='cart-items' >
-    {cartItem?.map((item)=><CartItem item={item} 
+    {cartItem?.cartItems.map((item)=><CartItem item={item} 
     key={item.id}
     />)
     }

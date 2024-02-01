@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux';
 const ProductCard = ({ product }) => {
   const state = useSelector((state)=> state.cart)
   const dispatch = useDispatch()
-  console.log(state)
+  // console.log(state)
  const addItemstoCart = (state,product)=>{
   const newCartItem = addItemtoCart(state.cartItems,product)
 

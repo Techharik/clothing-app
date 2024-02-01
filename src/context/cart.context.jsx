@@ -113,8 +113,6 @@ const {cartCount,totalValue,cartItem}=state
 
 const [isCartOpen,setIsCartOpen] =useState(false)
 
-
-
 const updateCartReducer = (newCartItem)=>{
     const newCount =  newCartItem.reduce((total,CartItem)=>{
         return total + CartItem.quantity;
@@ -136,10 +134,6 @@ const updateCartReducer = (newCartItem)=>{
      )
 
 }
-
-
-
-
 
 const addItemtoCart = (productToAdd)=>{
  const newCartItem = addCartItem(cartItem,productToAdd)
