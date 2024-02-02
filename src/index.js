@@ -9,10 +9,11 @@ import reportWebVitals from './reportWebVitals';
 import { ProductCardProvider } from './context/product.context';
 import { CartContextProvider } from './context/cart.context';
 
-
+import { PersistGate } from 'redux-persist/integration/react';
 
 import { Provider } from 'react-redux';
 import { store } from './store/store';
+import {persistStores} from './store/store'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -20,11 +21,16 @@ root.render(
     <BrowserRouter> 
     {/* <UserProvider> */}
     <Provider store= {store}>
+
+      <PersistGate loading={null} persistor={persistStores}>
+
       {/* <ProductCardProvider> */}
         {/* <CartContextProvider > */}
           <App />
         {/* </CartContextProvider> */}
       {/* </ProductCardProvider> */}
+      </PersistGate>
+
       </Provider>
     {/* </UserProvider> */}
     </BrowserRouter>
