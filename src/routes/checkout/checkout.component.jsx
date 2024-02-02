@@ -6,10 +6,11 @@ import CheckoutItem from '../../components/checkout-item/checkout-item.component
 
 import './checkout.styles.scss';
 import { useSelector } from 'react-redux';
-import { selectCartReducers } from '../../store/cart/cart.action.types';
+import { selectCartReducers, selectCartTotal } from '../../store/cart/cart.action.types';
 
 const Checkout = () => {
   const { cartItems } = useSelector(selectCartReducers);
+  const totalValue = useSelector(selectCartTotal);
 
   return (
     <div className='checkout-container'>
@@ -33,7 +34,7 @@ const Checkout = () => {
       {cartItems.map((cartItem) => (
         <CheckoutItem key={cartItem.id} cartItem={cartItem} />
       ))}
-      {/* <div className='total'>TOTAL: ${totalValue}</div> */}
+      <div className='total'>TOTAL: ${totalValue}</div>
     </div>
   );
 };

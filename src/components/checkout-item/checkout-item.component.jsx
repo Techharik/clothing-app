@@ -10,7 +10,7 @@ import { CART_ACTION_TYPES } from '../../utilits/action.types/cart.action.types'
 const CheckoutItem = ({ cartItem }) => {
   const { name, imageUrl, price, quantity } = cartItem;
   const cartItems = useSelector((state)=>state.cart.cartItems)
- const dispatch = useDispatch()
+  const dispatch = useDispatch()
 // const { } = useContext(CartContext);
 
 
@@ -29,7 +29,7 @@ const addItemtoCarts = (cartItem)=>{
     })
 }
 const removeItemToCarts = (cartItem)=>{
-    const value = removeCartItem(cartItems,cartItem)
+    const value = removeCartItem   (cartItems,cartItem)
     dispatch({
       type:CART_ACTION_TYPES.UPDATE_CART_ITEM,
       payload: value
